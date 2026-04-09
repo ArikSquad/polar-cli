@@ -1,4 +1,4 @@
-package dev.ari.polarcli;
+package eu.mikart.polarcli;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

@@ -1,4 +1,4 @@
-package dev.ari.polarcli;
+package eu.mikart.polarcli;
 
 import net.minestom.server.MinecraftServer;
 import net.hollowcube.polar.AnvilPolar;

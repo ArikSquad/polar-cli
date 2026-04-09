@@ -1,4 +1,4 @@
-package dev.ari.polarcli;
+package eu.mikart.polarcli;
 
 import net.hollowcube.polar.PolarWorld;
 

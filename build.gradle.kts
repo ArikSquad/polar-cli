@@ -35,6 +35,12 @@ tasks.withType<JavaCompile>().configureEach {
     options.release = 25
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = application.mainClass
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
     jvmArgs("--enable-native-access=ALL-UNNAMED")

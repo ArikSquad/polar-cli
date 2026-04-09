@@ -1,4 +1,4 @@
-package dev.ari.polarcli;
+package eu.mikart.polarcli;
 
 final class CliException extends RuntimeException {
     CliException(String message) {
