@@ -1,5 +1,7 @@
 package eu.mikart.polarcli;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import net.minestom.server.MinecraftServer;
 import net.hollowcube.polar.AnvilPolar;
 import net.hollowcube.polar.ChunkSelector;
@@ -11,11 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Main {
     private static volatile boolean minestomInitialized;
-
-    private Main() {
-    }
 
     static void main(String[] args) {
         System.exit(run(args));

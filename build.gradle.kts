@@ -2,6 +2,7 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 plugins {
     application
+    id("com.gradleup.shadow") version "9.4.1"
 }
 
 group = "eu.mikart"
@@ -12,9 +13,12 @@ repositories {
 }
 
 dependencies {
-    implementation("dev.hollowcube:polar:1.15.1")
-    implementation("net.minestom:minestom:2026.03.25-1.21.11")
+    implementation("dev.hollowcube:polar:1.16.0")
+    implementation("net.minestom:minestom:2026.06.05-26.1.2")
     runtimeOnly("org.slf4j:slf4j-simple:2.0.17")
+
+    implementation("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 
     testImplementation(platform("org.junit:junit-bom:5.13.4"))
     testImplementation("org.junit.jupiter:junit-jupiter")
@@ -39,6 +43,10 @@ tasks.jar {
     manifest {
         attributes["Main-Class"] = application.mainClass
     }
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("")
 }
 
 tasks.test {

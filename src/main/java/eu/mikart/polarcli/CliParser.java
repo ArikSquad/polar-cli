@@ -1,5 +1,6 @@
 package eu.mikart.polarcli;
 
+import lombok.experimental.UtilityClass;
 import net.hollowcube.polar.PolarWorld;
 
 import java.nio.file.Path;
@@ -7,11 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+@UtilityClass
 final class CliParser {
-    private CliParser() {
-    }
 
-    static CliOptions parse(String[] args) {
+    CliOptions parse(String[] args) {
         Path input = null;
         Path output = null;
         Integer radius = null;
@@ -79,7 +79,7 @@ final class CliParser {
         return new CliOptions(input, resolvedOutput, radius, resolvedCenterX, resolvedCenterZ, minSection, maxSection, compression, overwrite, false);
     }
 
-    static String usage() {
+    String usage() {
         return """
                 Usage:
                   polar-cli --input <world-dir> [--output <file.polar>] [options]
@@ -99,14 +99,14 @@ final class CliParser {
                 """;
     }
 
-    private static String requireValue(String[] args, int index, String option) {
+    private String requireValue(String[] args, int index, String option) {
         if (index >= args.length) {
             throw new CliException("Missing value for " + option + ".");
         }
         return args[index];
     }
 
-    private static int parseInt(String value, String option) {
+    private int parseInt(String value, String option) {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException exception) {
@@ -114,7 +114,7 @@ final class CliParser {
         }
     }
 
-    private static PolarWorld.CompressionType parseCompression(String value) {
+    private PolarWorld.CompressionType parseCompression(String value) {
         return switch (value.toLowerCase(Locale.ROOT)) {
             case "zstd" -> PolarWorld.CompressionType.ZSTD;
             case "none" -> PolarWorld.CompressionType.NONE;
@@ -122,11 +122,11 @@ final class CliParser {
         };
     }
 
-    private static int defaulted(Integer value) {
+    private int defaulted(Integer value) {
         return value != null ? value : 0;
     }
 
-    private static Path defaultOutput(Path input) {
+    private Path defaultOutput(Path input) {
         Path normalized = input.normalize();
         Path parent = normalized.getParent();
         String name = normalized.getFileName() != null ? normalized.getFileName().toString() : "world";
